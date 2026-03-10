@@ -1,0 +1,45 @@
+<div class="custom-modal-content">
+  <div class="custom-modal-header" [ngClass]="data.type">
+    <h5 class="custom-modal-title">
+      <i class="bi" [ngClass]="{
+        'bi-check-circle-fill': data.type === 'success',
+        'bi-exclamation-triangle-fill': data.type === 'error',
+        'bi-question-circle-fill': data.type === 'confirm'
+      }"></i>
+      {{ data.title }}
+    </h5>
+    <button type="button" class="btn-close-custom" aria-label="Close" (click)="onCancel()">×</button>
+  </div>
+
+  <div class="custom-modal-body">
+    <p class="message-text">{{ data.message }}</p>
+
+    <div class="prompt-container" *ngIf="data.type === 'prompt'">
+      <label class="input-label">{{ data.inputLabel }}</label>
+      <input type="text" class="custom-input" [(ngModel)]="data.inputValue" (keyup.enter)="onConfirm()">
+    </div>
+
+    <div class="loader-container" *ngIf="isLoading">
+      <div class="custom-spinner"></div>
+      <p class="loader-text">Procesando...</p>
+    </div>
+  </div>
+
+  <div class="custom-modal-footer" *ngIf="!isLoading">
+    <button
+      type="button"
+      class="btn-secondary-custom"
+      *ngIf="data.type === 'confirm'"
+      (click)="onCancel()">
+      {{ data.cancelText || 'Cancelar' }}
+    </button>
+
+    <button
+      type="button"
+      class="btn-primary-custom"
+      [ngClass]="{'btn-danger-custom': data.type === 'error'}"
+      (click)="onConfirm()">
+      {{ data.confirmText || 'Aceptar' }}
+    </button>
+  </div>
+</div>

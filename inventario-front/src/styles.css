@@ -1,0 +1,26 @@
+
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: "Segoe UI", system-ui, sans-serif;
+}
+
+body {
+  /* Un gradiente elegante de azul medianoche a azul marino */
+  background: linear-gradient(135deg, #4070b8 0%, #02123a 100%);
+  color: #f0f8ff;
+  min-height: 100vh;
+  margin: 0;
+  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  display:flex;
+  flex-direction:column;
+  min-height:100vh;
+}
+/* RESPONSIVE */
+@media(max-width: 1000px){
+    .grid{
+        grid-template-columns:1fr;
+    }
+}

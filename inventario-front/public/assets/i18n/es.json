@@ -1,0 +1,83 @@
+{
+  "menu": {
+    "home": "Inicio",
+    "inventory": "Inventario",
+    "register": "Registro",
+    "Menu": "Menú"
+  },
+  "footer": {
+    "about": {
+      "title": "Entelgy",
+      "description": "Plataforma interna para la gestión y control de activos tecnológicos. Sistema orientado a optimizar el seguimiento, ubicación y estado del inventario corporativo."
+    },
+    "quickLinks": {
+      "title": "Enlaces rápidos",
+      "documents": "Documentos",
+      "support": "Soporte",
+      "requests": "Solicitudes"
+    },
+    "basicInfo": {
+      "title": "Información básica",
+      "email": "Correo electrónico",
+      "schedule": "Horario"
+    },
+    "legal": {
+      "title": "Legal",
+      "privacyPolicy": "Política de privacidad",
+      "dataProtection": "Protección de datos",
+      "termsOfUse": "Términos de uso",
+      "internalRegulations": "Normativa interna"
+    },
+    "bottom": "© 2026 Entelgy · Sistema de Gestión de Activos · Versión 1.0.0"
+  },
+  "status": {
+    "OPERATIVO": "Operativo",
+    "AVERIA": "Avería"
+  },
+  "component": {
+    "new": "Nuevo componente",
+    "label": "Etiqueta",
+    "labelPlaceholder": "Ej: AB12345",
+    "type": "Tipo de componente",
+    "selectType": "Seleccionar tipo...",
+    "brand": "Marca",
+    "model": "Modelo",
+    "initialLocation": "Ubicación inicial",
+    "selectLocation": "Seleccionar ubicación...",
+    "details": "Detalles / Observaciones",
+    "user": "Usuario que registra",
+    "save": "Guardar componente",
+    "list": "Lista de componentes",
+    "search": "Buscar por etiqueta, marca o tipo...",
+    "brandModel": "Marca / Modelo",
+    "location": "Ubicación",
+    "status": "Estado",
+    "actions": "Acciones",
+    "unassigned": "Sin asignar",
+    "noResults": "No hay componentes o coincidencias con la búsqueda."
+  },
+  "TablePanel": {
+    "title": "Tabla de Administración",
+    "componentTypes": "Tipos de Componente",
+    "newComponentPlaceholder": "Nuevo componente...",
+    "add": "Añadir",
+    "locationTypes": "Tipos de Ubicación",
+    "newLocationPlaceholder": "Nueva ubicación..."
+  },
+  "Dialogs": {
+    "Buttons": {
+      "save": "Guardar",
+      "cancel": "Cancelar",
+      "confirm": "Sí, continuar"
+    },
+    "EditComponent": {
+      "title": "Editar Componente",
+      "message": "Por favor, introduce el nuevo nombre para este tipo de componente:",
+      "inputLabel": "Nombre del componente"
+    },
+    "Success": {
+      "title": "¡Completado!",
+      "updated": "El registro ha sido actualizado correctamente."
+    }
+  }
+}
