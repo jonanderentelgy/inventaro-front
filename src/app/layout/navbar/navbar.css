@@ -1,0 +1,180 @@
+/* --- VARIABLES GLOBALES (Paleta Blue Tech) --- */
+:host {
+  /* Colores Principales */
+  --brand-color: #00d2ff; /* Azul claro brillante / Cyan */
+  --brand-glow: rgba(0, 210, 255, 0.4);
+  --text-main: #f0f8ff; /* Blanco ligeramente azulado */
+  --text-muted: #94a3b8;
+
+  /* Valores para el Glassmorphism (Tonos azul marino) */
+  --glass-bg: rgba(10, 25, 47, 0.75); /* Azul marino muy oscuro translúcido */
+  --glass-border: rgba(0, 210, 255, 0.15); /* Borde sutil azul claro */
+  --glass-blur: blur(16px);
+
+  /* Animación elástica premium */
+  --transition-snappy: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* --- CABECERA (Efecto Cristal) --- */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 3rem;
+
+  /* Glassmorphism Mágico */
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border-bottom: 1px solid var(--glass-border);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+/* --- LOGO --- */
+.logo {
+  font-size: clamp(1.2rem, 2vw, 1.5rem);
+  font-weight: 800;
+  color: var(--text-main);
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: text-shadow 0.3s ease;
+}
+
+.logo i {
+  color: var(--brand-color);
+  font-size: 1.8rem;
+  filter: drop-shadow(0 0 8px var(--brand-glow));
+  transition: transform var(--transition-snappy);
+}
+
+.logo:hover i {
+  transform: rotate(15deg) scale(1.1);
+}
+.logo:hover {
+  text-shadow: 0 0 12px var(--brand-glow);
+}
+
+/* --- MENÚ DESPLEGABLE --- */
+.menu-dropdown {
+  position: relative;
+}
+
+.dropdown-btn {
+  background: rgba(0, 210, 255, 0.05);
+  border: 1px solid var(--glass-border);
+  color: var(--text-main);
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 0.6rem 1.4rem;
+  border-radius: 999px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.dropdown-btn:hover {
+  background: rgba(0, 210, 255, 0.1);
+  border-color: var(--brand-color);
+  box-shadow: 0 0 15px var(--brand-glow);
+  transform: translateY(-2px);
+}
+
+/* Menú oculto en cristal */
+.dropdown-content {
+  position: absolute;
+  top: 140%;
+  left: 50%;
+  transform: translateX(-50%) translateY(15px);
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  min-width: 220px;
+  border-radius: 16px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+
+  opacity: 0;
+  visibility: hidden;
+  transition: all var(--transition-snappy);
+  box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+}
+
+.dropdown-content.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* Enlaces del menú con animación de llenado */
+.dropdown-content a {
+  padding: 1rem 1.5rem;
+  text-decoration: none;
+  color: var(--text-muted);
+  font-weight: 500;
+  position: relative;
+  transition: color 0.3s ease;
+  z-index: 1;
+}
+
+.dropdown-content a::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 0;
+  background: rgba(0, 210, 255, 0.1);
+  border-left: 4px solid var(--brand-color);
+  transition: width 0.3s ease;
+  z-index: -1;
+}
+
+.dropdown-content a:hover,
+.dropdown-content a.active {
+  color: var(--text-main);
+}
+
+.dropdown-content a:hover::before,
+.dropdown-content a.active::before {
+  width: 100%;
+}
+
+/* --- SELECTOR DE IDIOMA TIPO SWITCH --- */
+.lang {
+  display: flex;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid var(--glass-border);
+  padding: 0.25rem;
+  border-radius: 999px;
+  position: relative;
+}
+
+.lang button {
+  background: transparent;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* Botón activo iluminado */
+.lang button.active {
+  color: #0a192f; /* Letra oscura para contrastar con el fondo claro */
+  background: var(--brand-color);
+  box-shadow: 0 0 12px var(--brand-glow);
+}

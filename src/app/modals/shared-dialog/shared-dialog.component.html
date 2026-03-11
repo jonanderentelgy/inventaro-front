@@ -1,0 +1,52 @@
+<div class="custom-modal-content">
+  <div class="custom-modal-header" [ngClass]="data.type">
+    <button type="button" class="btn-close-custom" (click)="onCancel()">
+        <i class="bi bi-x-lg"></i>
+    </button>
+
+    <div class="icon-wrapper">
+      <i class="bi" [ngClass]="{
+        'bi-check-lg': data.type === 'success',
+        'bi-x-circle': data.type === 'error',
+        'bi-patch-question': data.type === 'confirm',
+        'bi-chat-left-dots': data.type === 'prompt'
+      }"></i>
+    </div>
+
+    <h5 class="custom-modal-title">{{ data.title | translate }}</h5>
+  </div>
+
+  <div class="custom-modal-body">
+    <p class="message-text">{{ data.message | translate }}</p>
+
+    <div class="prompt-container" *ngIf="data.type === 'prompt'">
+      <input type="text"
+             class="custom-input"
+             [placeholder]="(data.inputLabel || 'SHARED.WRITE_HERE') | translate"
+             [(ngModel)]="data.inputValue"
+             (keyup.enter)="onConfirm()">
+    </div>
+
+    <div class="loader-container" *ngIf="isLoading">
+      <div class="custom-spinner"></div>
+      <p>{{ 'SHARED.UPDATING' | translate }}</p>
+    </div>
+  </div>
+
+  <div class="custom-modal-footer" *ngIf="!isLoading">
+    <button
+      type="button"
+      class="btn-base btn-secondary-custom"
+      *ngIf="data.type === 'confirm' || data.type === 'prompt'"
+      (click)="onCancel()">
+      {{ (data.cancelText || 'SHARED.CANCEL') | translate }}
+    </button>
+
+    <button
+      type="button"
+      class="btn-base btn-primary-custom"
+      (click)="onConfirm()">
+      {{ (data.confirmText || 'SHARED.CONTINUE') | translate }}
+    </button>
+  </div>
+</div>
