@@ -1,0 +1,171 @@
+<div class="grid">
+
+  <div class="card">
+
+    <h3>{{ 'component.list' | translate }}</h3>
+
+    <div class="search-box">
+      <i class="bi bi-search"></i>
+      <input
+        type="text"
+        [(ngModel)]="filtroTexto"
+        name="search"
+        [placeholder]="'component.search' | translate">
+    </div>
+
+    <div style="overflow-x:auto">
+
+      <table>
+
+        <thead>
+          <tr>
+            <th>{{ 'component.label' | translate }}</th>
+            <th>{{ 'component.type' | translate }}</th>
+            <th>{{ 'component.brandModel' | translate }}</th>
+            <th>{{ 'component.location' | translate }}</th>
+            <th>{{ 'component.status' | translate }}</th>
+            <th>{{ 'component.actions' | translate }}</th>
+          </tr>
+        </thead>
+
+        <tbody>
+
+          <tr *ngFor="let comp of componentesFiltrados">
+
+            <td>
+              <span class="badge bg-secondary">
+                {{ comp.etiqueta }}
+              </span>
+            </td>
+
+            <td>{{ comp.tipo }}</td>
+
+            <td>{{ comp.marca }} - {{ comp.modelo }}</td>
+
+            <td>
+              <strong>
+                <i class="bi bi-geo-alt"></i>
+                {{ comp.ubicacion || ('component.unassigned' | translate) }}
+              </strong>
+            </td>
+
+            <td>
+              <span
+                class="badge"
+                [ngClass]="comp.estadoActual === 'OPERATIVO' ? 'bg-success' : 'bg-warning'">
+
+                {{ comp.estadoActual }}
+
+              </span>
+            </td>
+
+            <td class="text-center">
+
+              <button
+                class="btn btn-sm btn-outline-primary me-1"
+                (click)="openUpdateModal(comp)"
+                data-bs-toggle="modal"
+                data-bs-target="#modalUbicacion">
+
+                <i class="bi bi-truck"></i>
+
+              </button>
+
+              <button
+                class="btn btn-sm btn-outline-danger"
+                (click)="deleteComponent(comp)"> <i class="bi bi-trash"></i>
+              </button>
+
+            </td>
+
+          </tr>
+
+          <tr *ngIf="componentesFiltrados.length === 0">
+            <td colspan="6" class="text-center">
+              {{ 'component.noResults' | translate }}
+            </td>
+          </tr>
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+  </div>
+<div class="card">
+    <h3>{{ 'component.new' | translate }}</h3>
+
+    <form (ngSubmit)="guardarComponente()">
+
+      <div class="form-group">
+        <label>{{ 'component.label' | translate }}</label>
+        <input
+          type="text"
+          [(ngModel)]="nuevoComp.etiqueta"
+          name="etiqueta"
+          required
+          maxlength="7"
+          [placeholder]="'component.labelPlaceholder' | translate">
+      </div>
+
+      <div class="form-group">
+        <label>{{ 'component.type' | translate }}</label>
+        <select [(ngModel)]="nuevoComp.tipoId" name="tipoId" required>
+          <option value="">{{ 'component.selectType' | translate }}</option>
+          <option *ngFor="let t of tipos" [value]="t.id">
+            {{ t.nombre }}
+          </option>
+        </select>
+      </div>
+
+      <div class="row">
+        <div class="form-group">
+          <label>{{ 'component.brand' | translate }}</label>
+          <input
+            type="text"
+            [(ngModel)]="nuevoComp.marca"
+            name="marca"
+            required>
+        </div>
+
+        <div class="form-group">
+          <label>{{ 'component.model' | translate }}</label>
+          <input
+            type="text"
+            [(ngModel)]="nuevoComp.modelo"
+            name="modelo"
+            required>
+        </div>
+
+      </div>
+
+      <div class="form-group">
+        <label>{{ 'component.initialLocation' | translate }}</label>
+        <select [(ngModel)]="nuevoComp.tipoUbicacionId" name="tipoUbicacionId" required>
+          <option value="">{{ 'component.selectLocation' | translate }}</option>
+          <option *ngFor="let u of ubicaciones" [value]="u.id">
+            {{ u.nombre }}
+          </option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>{{ 'component.details' | translate }}</label>
+        <input type="text" [(ngModel)]="nuevoComp.notaUbicacion" name="notaUbicacion" required>
+      </div>
+
+      <div class="form-group">
+        <label>{{ 'component.user' | translate }}</label>
+        <input type="text" [(ngModel)]="nuevoComp.usuario" name="usuario" required>
+      </div>
+
+      <button type="submit">
+        <i class="bi bi-save"></i>
+        {{ 'component.save' | translate }}
+      </button>
+
+    </form>
+  </div>
+
+</div>

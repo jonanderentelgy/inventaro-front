@@ -1,0 +1,95 @@
+<div class="container mt-4">
+  <h2 class="mb-4">{{ 'TablePanel.title' | translate }}</h2>
+
+  <div class="row">
+
+    <div class="col-md-6 mb-4">
+      <div class="card">
+        <div class="card-header">
+          <h4>{{ 'TablePanel.componentTypes' | translate }}</h4>
+        </div>
+        <div class="card-body">
+
+          <div class="input-group mb-4">
+            <span class="input-group-text search-icon"><i class="bi bi-search"></i></span>
+            <input type="text" class="form-control search-input" placeholder="Buscar componente..." [(ngModel)]="filtroComponente">
+          </div>
+          
+          <div class="input-group mb-3">
+            <input type="text" class="form-control add-input" [placeholder]="'TablePanel.newComponentPlaceholder' | translate" [(ngModel)]="nuevoComponenteNombre">
+            <button class="btn btn-success" (click)="agregarComponente()">{{ 'TablePanel.add' | translate }}</button>
+          </div>
+
+
+
+          <div class="list-header d-flex justify-content-between px-3 py-2 mb-2">
+            <div (click)="toggleOrdenComponentes()" class="sortable-title">
+              Nombre
+              <i class="bi ms-1" [ngClass]="ordenComponentesAsc ? 'bi-sort-alpha-down' : 'bi-sort-alpha-up-alt'"></i>
+            </div>
+            <div class="text-end">Acciones</div>
+          </div>
+
+          <ul class="list-group">
+            <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let comp of componentesFiltrados">
+              {{ comp.nombre }}
+              <div>
+                <button class="btn btn-sm btn-outline-secondary me-2" (click)="editarComponente(comp)">✏️</button>
+                <button class="btn btn-sm btn-outline-danger" (click)="eliminarComponente(comp.id!)">🗑️</button>
+              </div>
+            </li>
+
+            <li class="list-group-item text-center text-muted border-dashed" *ngIf="componentesFiltrados.length === 0">
+              No se encontraron componentes.
+            </li>
+          </ul>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6 mb-4">
+      <div class="card">
+        <div class="card-header">
+          <h4>{{ 'TablePanel.locationTypes' | translate }}</h4>
+        </div>
+        <div class="card-body">
+
+          <div class="input-group mb-3">
+            <input type="text" class="form-control add-input" [placeholder]="'TablePanel.newLocationPlaceholder' | translate" [(ngModel)]="nuevaUbicacionNombre">
+            <button class="btn btn-success" (click)="agregarUbicacion()">{{ 'TablePanel.add' | translate }}</button>
+          </div>
+
+          <div class="input-group mb-4">
+            <span class="input-group-text search-icon"><i class="bi bi-search"></i></span>
+            <input type="text" class="form-control search-input" placeholder="Buscar ubicación..." [(ngModel)]="filtroUbicacion">
+          </div>
+
+          <div class="list-header d-flex justify-content-between px-3 py-2 mb-2">
+            <div (click)="toggleOrdenUbicaciones()" class="sortable-title">
+              Nombre
+              <i class="bi ms-1" [ngClass]="ordenUbicacionesAsc ? 'bi-sort-alpha-down' : 'bi-sort-alpha-up-alt'"></i>
+            </div>
+            <div class="text-end">Acciones</div>
+          </div>
+
+          <ul class="list-group">
+            <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let ubi of ubicacionesFiltradas">
+              {{ ubi.nombre }}
+              <div>
+                <button class="btn btn-sm btn-outline-secondary me-2" (click)="editarUbicacion(ubi)">✏️</button>
+                <button class="btn btn-sm btn-outline-danger" (click)="eliminarUbicacion(ubi.id!)">🗑️</button>
+              </div>
+            </li>
+
+            <li class="list-group-item text-center text-muted border-dashed" *ngIf="ubicacionesFiltradas.length === 0">
+              No se encontraron ubicaciones.
+            </li>
+          </ul>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

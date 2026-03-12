@@ -1,0 +1,103 @@
+<div class="mov-page">
+  <header class="mov-header">
+    <h2>
+      <i class="bi bi-clock-history"></i>
+      Historial de Movimientos
+      <span class="count" *ngIf="totalElements > 0">({{ totalElements }})</span>
+    </h2>
+
+    <div class="filters">
+      <div class="search-box">
+        <i class="bi bi-search"></i>
+        <input type="text" placeholder="Buscar usuario, equipo o motivo..." [(ngModel)]="filtroTexto">
+      </div>
+
+      <select [(ngModel)]="filtroMotivo" class="custom-select">
+        <option value="">Todos los tipos</option>
+        <option value="ALTA">Altas</option>
+        <option value="BAJA">Bajas</option>
+        <option value="TRASLADO">Traslados</option>
+      </select>
+    </div>
+  </header>
+
+  <div class="timeline" *ngIf="movimientos.length > 0; else emptyState">
+    <div *ngFor="let grupo of movimientosAgrupados | keyvalue: keepOrder">
+
+      <div class="day-divider">
+        <span><i class="bi bi-calendar3"></i> {{ grupo.key }}</span>
+      </div>
+
+      <article class="timeline-item" *ngFor="let mov of grupo.value; trackBy: trackById">
+        <div class="timeline-dot"></div>
+
+        <div class="timeline-card">
+          <header class="timeline-meta">
+            <span class="fecha">
+              <i class="bi bi-alarm"></i> {{ mov.fecha | date:'HH:mm' }}
+            </span>
+
+            <span class="chip usuario" title="Usuario que realizó el cambio">
+              <i class="bi bi-person-circle"></i> {{ mov.usuarioModificador }}
+            </span>
+
+            <span class="chip componente" *ngIf="mov.estadoActualComp?.detalles_ubicacion?.nota">
+              <i class="bi bi-tag-fill"></i> {{ mov.estadoActualComp.detalles_ubicacion.nota }}
+            </span>
+
+            <span class="chip motivo" [ngClass]="getMotivoClass(mov.motivo)">
+              <i class="bi" [class]="getMotivoIcon(mov.motivo)"></i> {{ mov.motivo }}
+            </span>
+          </header>
+
+          <main class="timeline-body">
+            <div class="estado-box old" *ngIf="mov.estadoViejoComp">
+              <span class="label antes">ORIGEN</span>
+              <div class="details">
+                <p><strong>Estado:</strong> {{ mov.estadoViejoComp.estado }}</p>
+                <p class="loc" *ngIf="mov.estadoViejoComp.detalles_ubicacion?.nota">
+                   <i class="bi bi-geo-alt"></i> {{ mov.estadoViejoComp.detalles_ubicacion.nota }}
+                </p>
+              </div>
+            </div>
+
+            <div class="arrow" *ngIf="mov.estadoViejoComp">
+              <i class="bi bi-chevron-double-right"></i>
+            </div>
+
+            <div class="estado-box new">
+              <span class="label despues">{{ mov.estadoViejoComp ? 'DESTINO' : 'ALTA INICIAL' }}</span>
+              <div class="details">
+                <p><strong>Estado:</strong> {{ mov.estadoActualComp.estado }}</p>
+                <p class="loc" *ngIf="mov.estadoActualComp.detalles_ubicacion?.nota">
+                  <i class="bi bi-geo-alt-fill"></i> {{ mov.estadoActualComp.detalles_ubicacion.nota }}
+                </p>
+              </div>
+            </div>
+          </main>
+        </div>
+      </article>
+    </div>
+  </div>
+
+  <ng-template #emptyState>
+    <div class="empty-container">
+      <i class="bi bi-patch-question"></i>
+      <p>No se han encontrado movimientos con los filtros seleccionados.</p>
+    </div>
+  </ng-template>
+
+  <footer class="pagination" *ngIf="totalPages > 1">
+    <button (click)="prevPage()" [disabled]="page === 0" class="btn-pag">
+      <i class="bi bi-arrow-left"></i> Anterior
+    </button>
+
+    <div class="page-counter">
+      Página <strong>{{ page + 1 }}</strong> de <strong>{{ totalPages }}</strong>
+    </div>
+
+    <button (click)="nextPage()" [disabled]="page >= totalPages - 1" class="btn-pag">
+      Siguiente <i class="bi bi-arrow-right"></i>
+    </button>
+  </footer>
+</div>

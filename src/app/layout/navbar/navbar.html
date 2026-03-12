@@ -1,0 +1,37 @@
+<header>
+
+  <div class="logo">
+    <i class="bi bi-hexagon-fill bi bi-box-seam"></i>
+    Entelgy
+  </div>
+
+  <div class="menu-dropdown">
+
+    <button class="dropdown-btn" (click)="toggleMenu()">
+      <i class="bi bi-list"></i> Menú
+    </button>
+
+    <div class="dropdown-content" [class.show]="isMenuOpen">
+
+      <a routerLink="/home" routerLinkActive="active" (click)="closeMenu()">
+        {{ 'menu.home' | translate }}
+      </a>
+
+      <a routerLink="/table" routerLinkActive="active" (click)="closeMenu()">
+        {{ 'menu.inventory' | translate }}
+      </a>
+      <a routerLink="/movimientos" routerLinkActive="active" (click)="closeMenu()">
+        {{ 'menu.movimientos' | translate }}
+      </a>
+    </div>
+  </div>
+  <div class="lang">
+    <button (click)="changeLang('es')" [class.active]="currentLang==='es'">
+      ES
+    </button>
+    <button (click)="changeLang('eu')" [class.active]="currentLang==='eu'">
+      EU
+    </button>
+  </div>
+
+</header>

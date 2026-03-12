@@ -1,0 +1,191 @@
+/* --- VARIABLES LOCALES (Solid Dark Tech) --- */
+:host {
+  /* Colores de marca y acentos */
+  --brand-color: #00d2ff;
+  --brand-glow: rgba(0, 210, 255, 0.4);
+
+  --danger-color: #ff4757;
+  --edit-color: #feca57;
+
+  /* Texto */
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+
+  /* Fondos sólidos (Sin transparencias) */
+  --bg-card: #02123a;       /* Azul pizarra muy oscuro para la tarjeta */
+  --bg-header: #02123a;     /* Casi negro para la cabecera */
+  --bg-list-item: #1e293b;  /* Un tono más claro para separar los items */
+  --border-solid: #334155;  /* Gris/Azul para separar elementos */
+}
+
+/* --- TÍTULO PRINCIPAL --- */
+h2 {
+  color: var(--text-main);
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  margin-bottom: 1.5rem;
+}
+
+/* --- TARJETAS SÓLIDAS --- */
+.card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-solid);
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+  transition: transform 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+}
+
+/* --- CABECERAS DE LAS TARJETAS --- */
+.card-header {
+  background-color: var(--bg-header) !important;
+  border-bottom: 1px solid var(--border-solid);
+  padding: 1.2rem 1.5rem;
+}
+
+.card-header h4 {
+  margin: 0;
+  color: rgb(147, 226, 228);
+  font-weight: 600;
+  font-size: 1.25rem;
+}
+
+/* --- INPUTS DE TEXTO --- */
+.form-control {
+  background-color: var(--bg-list-item);
+  border: 1px solid var(--border-solid);
+  color: var(--text-main);
+  border-radius: 6px 0 0 6px;
+  padding: 0.6rem 1rem;
+}
+
+.form-control::placeholder {
+  color: rgb(217, 253, 246);
+  font-weight: 700;
+}
+
+.form-control:focus {
+  background-color: var(--bg-card);
+  border-color: var(--brand-color);
+  box-shadow: 0 0 0 2px rgba(0, 210, 255, 0.2);
+  color: var(--text-main);
+  outline: none;
+}
+
+/* --- BOTÓN AÑADIR --- */
+.btn-success {
+  background-color: var(--bg-list-item);
+  color: var(--brand-color);
+  border: 1px solid var(--border-solid);
+  border-left: none; /* Para que se fusione con el input */
+  font-weight: 600;
+  border-radius: 0 6px 6px 0;
+  padding: 0.6rem 1.2rem;
+  transition: all 0.2s ease;
+}
+
+.btn-success:hover {
+  background-color: var(--brand-color);
+  color: #000;
+  border-color: var(--brand-color);
+  box-shadow: 0 0 10px var(--brand-glow);
+}
+
+/* --- LISTA DE ELEMENTOS --- */
+.list-group {
+  border-radius: 6px;
+  gap: 0.5rem; /* Separación entre filas */
+}
+
+.list-group-item {
+  background-color: var(--bg-list-item);
+  border: 1px solid var(--border-solid) !important; /* Importante para sobreescribir Bootstrap */
+  border-radius: 6px !important; /* Bordes redondeados en cada fila */
+  color: var(--text-main);
+  padding: 0.8rem 1.2rem;
+  margin-bottom: 0.2rem;
+  transition: border-color 0.2s ease;
+}
+
+.list-group-item:hover {
+  border-color: var(--brand-color) !important;
+}
+
+/* --- BOTONES DE ACCIÓN (Editar y Borrar) --- */
+.btn-outline-secondary, .btn-outline-danger {
+  border-radius: 6px;
+  background-color: var(--bg-card);
+  transition: all 0.2s ease;
+  border-width: 1px;
+  padding: 0.25rem 0.6rem;
+}
+
+/* Botón Editar (Amarillo) */
+.btn-outline-secondary {
+  border-color: var(--border-solid);
+  color: var(--edit-color);
+}
+.btn-outline-secondary:hover {
+  background-color: var(--edit-color);
+  border-color: var(--edit-color);
+  color: #000;
+}
+
+/* Botón Borrar (Rojo) */
+.btn-outline-danger {
+  border-color: var(--border-solid);
+  color: var(--danger-color);
+}
+.btn-outline-danger:hover {
+  background-color: var(--danger-color);
+  border-color: var(--danger-color);
+  color: #fff;
+}
+/* =========================================
+   NUEVOS ESTILOS PARA BUSCADOR Y ORDENACIÓN
+   ========================================= */
+
+/* Icono del buscador (Se fusiona con el input) */
+.search-icon {
+  background-color: var(--bg-list-item);
+  border: 1px solid var(--border-solid);
+  border-right: none;
+  color: var(--text-muted);
+  border-radius: 6px 0 0 6px;
+}
+
+.search-input {
+  border-left: none;
+  border-radius: 0 6px 6px 0;
+}
+
+/* Cabecera virtual encima de las listas */
+.list-header {
+  color: var(--brand-color);
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-bottom: 2px solid var(--border-solid);
+}
+
+.sortable-title {
+  cursor: pointer;
+  user-select: none;
+  transition: color 0.2s, text-shadow 0.2s;
+}
+
+.sortable-title:hover {
+  color: #fff;
+  text-shadow: 0 0 8px var(--brand-glow);
+}
+
+/* Estilo para cuando no hay resultados en la búsqueda */
+.border-dashed {
+  border-style: dashed !important;
+  background-color: transparent;
+}

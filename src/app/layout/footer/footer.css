@@ -1,0 +1,81 @@
+:host{
+    --primary:#0d2c6c;
+    --accent:#2563eb;
+    --bg:#f4f6f9;
+    --card:#ffffff;
+    --text:#1f2937;
+    --muted:#6b7280;
+    --success:#16a34a;
+    --danger:#dc2626;
+    --brand-color: #40c4ff; /* Azul claro vibrante */
+    --brand-glow: rgba(64, 196, 255, 0.4); /* Sombra suave para el efecto de resplandor */
+}
+
+/* FOOTER  */
+/* FOOTER  */
+.footer {
+    background: linear-gradient(135deg, #0d2c6c, #111827);
+    color: #cbd5e1; /* Gris claro/azulado, sin opacidades */
+    padding: 50px 40px 20px 40px;
+    margin-top: 60px;
+}
+
+.footer-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 40px;
+    margin-bottom: 40px;
+}
+
+.footer-column h4 {
+    color: #ffffff;
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-shadow: 0 0 8px var(--brand-glow); /* Brillo solo para los títulos */
+}
+
+.footer-column p {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: #cbd5e1;
+}
+
+.footer-column ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-column ul li {
+    margin-bottom: 10px;
+    font-size: 0.9rem;
+}
+
+.footer-column a {
+    color: #cbd5e1;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: inline-block; /* Necesario para que el transform funcione */
+}
+
+/* Efecto Hover Premium (Deslizamiento y brillo en vez de cambio de tamaño) */
+.footer-column a:hover {
+    color: var(--brand-color);
+    transform: translateX(6px); /* Se desliza suavemente a la derecha */
+    text-shadow: 0 0 8px var(--brand-glow);
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 20px;
+    text-align: center;
+    font-size: 0.85rem;
+    color: #94a3b8;
+}
+/* RESPONSIVE */
+@media(max-width: 1000px){
+    .grid{
+        grid-template-columns:1fr;
+    }
+}
+

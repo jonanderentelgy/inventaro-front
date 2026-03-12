@@ -1,0 +1,115 @@
+{
+  "menu": {
+    "home": "Inicio",
+    "inventory": "Inventario",
+    "movimientos": "Historial de Movimientos",
+    "register": "Registro",
+    "Menu": "Menú"
+  },
+  "footer": {
+    "about": {
+      "title": "Entelgy",
+      "description": "Plataforma interna para la gestión y control de activos tecnológicos. Sistema orientado a optimizar el seguimiento, ubicación y estado del inventario corporativo."
+    },
+    "quickLinks": {
+      "title": "Enlaces rápidos",
+      "documents": "Documentos",
+      "support": "Soporte",
+      "requests": "Solicitudes"
+    },
+    "basicInfo": {
+      "title": "Información básica",
+      "email": "Correo electrónico",
+      "schedule": "Horario"
+    },
+    "legal": {
+      "title": "Legal",
+      "privacyPolicy": "Política de privacidad",
+      "dataProtection": "Protección de datos",
+      "termsOfUse": "Términos de uso",
+      "internalRegulations": "Normativa interna"
+    },
+    "bottom": "© 2026 Entelgy · Sistema de Gestión de Activos · Versión 1.0.0"
+  },
+  "status": {
+    "OPERATIVO": "Operativo",
+    "AVERIA": "Avería"
+  },
+  "component": {
+    "new": "Nuevo componente",
+    "label": "Etiqueta",
+    "labelPlaceholder": "Ej: AB12345",
+    "type": "Tipo de componente",
+    "selectType": "Seleccionar tipo...",
+    "brand": "Marca",
+    "model": "Modelo",
+    "initialLocation": "Ubicación inicial",
+    "selectLocation": "Seleccionar ubicación...",
+    "details": "Detalles / Observaciones",
+    "user": "Usuario que registra",
+    "save": "Guardar componente",
+    "list": "Lista de componentes",
+    "search": "Buscar por etiqueta, marca o tipo...",
+    "brandModel": "Marca / Modelo",
+    "location": "Ubicación",
+    "status": "Estado",
+    "actions": "Acciones",
+    "unassigned": "Sin asignar",
+    "noResults": "No hay componentes o coincidencias con la búsqueda."
+  },
+  "TablePanel": {
+    "title": "Tabla de Administración",
+    "componentTypes": "Tipos de Componente",
+    "newComponentPlaceholder": "Nuevo componente...",
+    "add": "Añadir",
+    "locationTypes": "Tipos de Ubicación",
+    "newLocationPlaceholder": "Nueva ubicación..."
+  },
+  "Dialogs": {
+    "Buttons": {
+      "save": "Guardar",
+      "cancel": "Cancelar",
+      "confirm": "Sí, continuar"
+    },
+    "EditComponent": {
+      "title": "Editar Componente",
+      "message": "Por favor, introduce el nuevo nombre para este tipo de componente:",
+      "inputLabel": "Nombre del componente"
+    },
+    "Success": {
+      "title": "¡Completado!",
+      "updated": "El registro ha sido actualizado correctamente."
+    }
+  },
+  "SHARED": {
+    "CONTINUE": "Continuar",
+    "SAVE": "Guardar",
+    "CANCEL": "Cancelar"
+  },
+  "MODALS": {
+    "SUCCESS": "¡Logrado!",
+    "UPDATED": "Actualizado",
+    "DELETED": "Eliminado",
+    "CONFIRM_TITLE": "¿Estás seguro?"
+  },
+  "CATALOGO": {
+    "COMPONENTES": {
+      "ADD_SUCCESS": "Nuevo tipo de componente añadido.",
+      "EDIT_TITLE": "Editar Componente",
+      "EDIT_MSG": "Introduce el nuevo nombre para este tipo de componente:",
+      "INPUT_LABEL": "Nombre del componente",
+      "UPDATE_SUCCESS": "El componente se ha actualizado correctamente.",
+      "DELETE_MSG": "Esta acción eliminará permanentemente el tipo de componente.",
+      "DELETE_SUCCESS": "El tipo de componente ha sido borrado."
+    },
+    "UBICACIONES": {
+      "ADD_SUCCESS": "Nueva ubicación añadida.",
+      "EDIT_TITLE": "Editar Ubicación",
+      "EDIT_MSG": "Introduce el nuevo nombre para esta ubicación:",
+      "INPUT_LABEL": "Nombre de la ubicación",
+      "UPDATE_SUCCESS": "La ubicación se ha actualizado correctamente.",
+      "DELETE_MSG": "Esta acción eliminará permanentemente la ubicación.",
+      "DELETE_SUCCESS": "La ubicación ha sido borrada."
+    }
+  }
+}
