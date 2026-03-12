@@ -5,8 +5,8 @@ import { Observable } from 'rxjs';
 @Injectable({ providedIn: 'root' })
 export class InventoryService {
 private API_URL = 'http://localhost:8080/components';
-  private API_MOVIMIENTOS = 'http://localhost:8080/api/movimientos'; 
-  
+  private API_MOVIMIENTOS = 'http://localhost:8080/api/movimientos';
+
   // URLs de Catálogos
   private CAT_TIPOS_URL = 'http://localhost:8080/api/catalogos/tipos-componente';
   private CAT_UBICACIONES_URL = 'http://localhost:8080/api/catalogos/tipos-ubicacion';
@@ -19,14 +19,13 @@ private API_URL = 'http://localhost:8080/components';
   update(id: string, data: any): Observable<any> {
     return this.http.put(`${this.API_URL}/${id}`, data);
   }
-  
+
 delete(id: string, usuario: string): Observable<any> {
   return this.http.delete(`${this.API_URL}/${id}?usuario=${usuario}`);
 }
-getMovimientos(): Observable<any[]> {
-    return this.http.get<any[]>(this.API_MOVIMIENTOS);
-  }
-
+getMovimientos(page: number): Observable<any> {
+  return this.http.get(`${this.API_MOVIMIENTOS}?page=${page}`);
+}
   getHistorialComponente(componenteId: string): Observable<any[]> {
     return this.http.get<any[]>(`${this.API_URL}/${componenteId}/historial`);
   }

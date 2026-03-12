@@ -1,75 +1,131 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { InventoryService } from '../../services/inventory.service';
 import { TranslateModule } from '@ngx-translate/core';
+
 @Component({
   selector: 'app-movimiento',
-  imports: [CommonModule, FormsModule],
+  standalone: true,
+  imports: [CommonModule, FormsModule, TranslateModule],
   templateUrl: './movimiento.html',
-  styleUrl: './movimiento.css',
+  styleUrls: ['./movimiento.css']
 })
-
 export class MovimientosComponent implements OnInit {
 
   movimientos: any[] = [];
-  filtro: string = '';
+// En el archivo .ts
+keepOrder = (a: any, b: any) => 0;
+  page = 0;
+  totalPages = 0;
+  totalElements = 0;
 
-  pagina = 1;
-  pageSize = 5;
+  filtroTexto = '';
+  filtroMotivo = '';
 
-  constructor(private service: InventoryService) {}
-
+constructor(private service: InventoryService, private cd: ChangeDetectorRef) {}
   ngOnInit(): void {
-    this.loadMovimientos();
+    this.load();
   }
 
-  loadMovimientos() {
-    this.service.getMovimientos().subscribe(res => {
-      this.movimientos = res;
+  load() {
+    this.service.getMovimientos(this.page).subscribe({
+      next: (res: any) => {
+        this.movimientos = res.content || [];
+        this.totalPages = res.totalPages || 0;
+        this.totalElements = res.totalElements || 0;
+        this.cd.detectChanges();
+      },
+      error: (err) => {
+        console.error('Error cargando movimientos', err);
+      }
     });
   }
 
-  get movimientosFiltrados() {
-
-    if (!this.filtro) return this.movimientos;
-
-    const txt = this.filtro.toLowerCase();
-
-    return this.movimientos.filter(m =>
-      m.usuarioModificador?.toLowerCase().includes(txt) ||
-      m.motivo?.toLowerCase().includes(txt)
-    );
-  }
-
-  get totalPaginas() {
-    return Math.ceil(this.movimientosFiltrados.length / this.pageSize);
-  }
-
-  get movimientosPaginados() {
-
-    const start = (this.pagina - 1) * this.pageSize;
-
-    return this.movimientosFiltrados.slice(
-      start,
-      start + this.pageSize
-    );
-  }
-
   nextPage() {
-    if (this.pagina < this.totalPaginas) {
-      this.pagina++;
+    if (this.page < this.totalPages - 1) {
+      this.page++;
+      this.load();
     }
   }
 
   prevPage() {
-    if (this.pagina > 1) {
-      this.pagina--;
+    if (this.page > 0) {
+      this.page--;
+      this.load();
     }
   }
 
   trackById(index:number,item:any){
     return item.id
+  }
+
+  get movimientosFiltrados() {
+
+    if (!this.movimientos) return [];
+
+    return this.movimientos.filter(m => {
+
+      const txt = this.filtroTexto.toLowerCase();
+
+      const usuario = m.usuarioModificador || '';
+      const motivo = m.motivo || '';
+
+      const coincideTexto =
+        !txt ||
+        usuario.toLowerCase().includes(txt) ||
+        motivo.toLowerCase().includes(txt);
+
+      const coincideMotivo =
+        !this.filtroMotivo ||
+        motivo.toUpperCase().includes(this.filtroMotivo.toUpperCase());
+
+      return coincideTexto && coincideMotivo;
+
+    });
+  }
+
+  get movimientosAgrupados() {
+
+    const grupos:any = {};
+
+    for (const m of this.movimientosFiltrados) {
+
+      const fecha = new Date(m.fecha).toLocaleDateString();
+
+      if (!grupos[fecha]) {
+        grupos[fecha] = [];
+      }
+
+      grupos[fecha].push(m);
+
+    }
+
+    return grupos;
+  }
+
+  getMotivoClass(motivo:string){
+
+    const mot = motivo?.toUpperCase();
+
+    if(mot?.includes('ALTA')) return 'alta';
+    if(mot?.includes('BAJA')) return 'baja';
+    if(mot?.includes('TRASLADO')) return 'traslado';
+
+    return 'otro';
+
+  }
+
+  getMotivoIcon(motivo:string){
+
+    const mot = motivo?.toUpperCase();
+
+    if(mot?.includes('ALTA')) return 'bi-plus-circle';
+    if(mot?.includes('BAJA')) return 'bi-x-circle';
+    if(mot?.includes('TRASLADO')) return 'bi-arrow-left-right';
+
+    return 'bi-pencil';
+
   }
 
 }
